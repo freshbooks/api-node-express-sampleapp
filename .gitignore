@@ -1,0 +1,13 @@
+# OS Files
+Thumbs.db
+.DS_Store
+
+# node.js
+node_modules
+uploads
+db
+*-lock.json
+
+# ignore ssl keys
+server.crt
+server.key
