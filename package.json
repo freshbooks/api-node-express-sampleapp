@@ -1,0 +1,32 @@
+{
+  "name": "api-node-express-sampleapp",
+  "version": "1.0.0",
+  "description": "sample app to allow users to enter their oauth creds into their app env as env vars and handle auth and basic respests using FreshBooks API root path",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freshbooks/api-node-express-sampleapp.git"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "FB API"
+  ],
+  "author": "Aradhya Kunwar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/freshbooks/api-node-express-sampleapp/issues"
+  },
+  "homepage": "https://github.com/freshbooks/api-node-express-sampleapp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
