@@ -3,12 +3,13 @@ const bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs')
 const request = require('request');
+require('dotenv').config();
 
-const port = 5000
+const port = 5000;
 const baseUrl = "https://api.freshbooks.com";
-const clientSecret = ""
-const clientId = ""
-const redirectURI = ""
+const clientSecret = process.env.CLIENT_SECRET;
+const clientId = process.env.CLIENT_ID;
+const redirectURI = process.env.REDIRECT_URL;
 
 var serverKey = fs.readFileSync(__dirname + '/server.key');
 var serverCert = fs.readFileSync(__dirname + '/server.crt');
@@ -20,11 +21,6 @@ var options = {
 const app = express();
 app.use(bodyParser.json());
 
-// remove this before committing
-app.get('/', (req, res) => {
-    res.send('Now using https..');
- });
-
 app.get('/TestAuthentication/', function(req, res) {
     let authCode = req.query.code;
     authData = { 
@@ -35,13 +31,11 @@ app.get('/TestAuthentication/', function(req, res) {
         "redirect_uri": redirectURI
     };
     oauthUrl = baseUrl + '/auth/oauth/token';
-    oauthRequest = request.post(oauthUrl, {json:authData}, function(err,httpResponse,oauthBody){
+    oauthRequest = request.post(oauthUrl, {json:authData}, function(err,oauthResponse,oauthBody){
         if (err) {
             console.error(err);
             res.send(err);
         }
-        // console.log(`statusCode: ${httpResponse.statusCode}`)
-        // console.log(oauthBody)
         var meOptions = {
             headers: {
                 'Authorization': 'Bearer ' + oauthBody.access_token
@@ -53,10 +47,8 @@ app.get('/TestAuthentication/', function(req, res) {
                 console.error(meErr)
                 res.send(err)
             }
-            // console.log(`statusCode: ${meResponse.statusCode}`);
             meBodyJson = JSON.parse(meBody);
             meProfile = meBodyJson.response.profile;
-            // console.log(meProfile)
             res.send("You have successfully logged in for " + meProfile.first_name + " " + meProfile.last_name);
         });
     });

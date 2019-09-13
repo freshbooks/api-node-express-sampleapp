@@ -11,3 +11,5 @@ db
 # ignore ssl keys
 server.crt
 server.key
+
+.env
