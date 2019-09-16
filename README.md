@@ -28,7 +28,9 @@ The values for these variables are available on the [developer page](https://my.
 $ npm install
 ```
 - This application uses the https protocol. Run the command below to genarate the **server.crt** and **server.crt** files used by the Node application.
-> openssl req -x509 -nodes -newkey rsa:4096 -keyout server.key -out server.crt
+```
+$ openssl req -x509 -nodes -newkey rsa:4096 -keyout server.key -out server.crt
+```
 - Run the app using the node command.
 ```
 $ node app.js
